@@ -1,0 +1,64 @@
+.item {
+  position: relative;
+  border-radius: .25em;
+  overflow: hidden;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition-property: -webkit-box-shadow transform;
+  transition-property: -webkit-box-shadow transform;
+  transition-property: box-shadow transform;
+  transition-property: box-shadow transform, -webkit-box-shadow transform;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+  cursor: pointer;
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.item.match, .item.active {
+  cursor: unset;
+}
+
+.item.match::after, .item.active::after {
+  opacity: 0;
+}
+
+.item.match {
+  opacity: .5;
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+}
+
+.item.active {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  z-index: 1;
+  -webkit-box-shadow: 0 0 1em #000a;
+          box-shadow: 0 0 1em #000a;
+}
+
+.item::after {
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
+  content: '';
+  position: absolute;
+  inset: 0px;
+  z-index: 2;
+  background: #c8c8c8;
+}
+
+#game #plan {
+  max-width: 76rem;
+  margin: 0 auto;
+  display: -ms-grid;
+  display: grid;
+  gap: 1rem;
+  -ms-grid-columns: (auto)[6];
+      grid-template-columns: repeat(6, auto);
+}
+/*# sourceMappingURL=main.css.map */

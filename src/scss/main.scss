@@ -1,0 +1,55 @@
+.item {
+    position: relative;
+    border-radius: .25em;
+    overflow: hidden;
+    transform: scale(1);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    transition-property: box-shadow transform;
+    transition-duration: .3s;
+
+    cursor: pointer;
+
+    &.match, &.active {
+        cursor: unset;
+        &::after {
+            opacity: 0;
+        }
+    }
+
+    &.match {
+        opacity: .5;
+        transform: scale(.95)
+    }
+
+    &.active {
+        transform: scale(1.05);
+        z-index: 1;
+        box-shadow: 0 0 1em #000a;
+    }
+
+    &::after {
+        transition: opacity .3s;
+        content: '';
+        position: absolute;
+        inset: 0px;
+        z-index: 2;
+        background: rgba(200, 200, 200, 1);
+
+    }
+}
+
+#game {
+    #plan {
+        max-width: 76rem;
+        margin: 0 auto;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(6, auto);
+    }
+}
