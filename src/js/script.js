@@ -10,8 +10,8 @@ const imageCount = 12;
 let attempts = 0;
 
 const shuffleArr = array => {
-    for (var i = array.length - 1; i > 0; i--) {
-        var rand = Math.floor(Math.random() * (i + 1));
+    for (let i = array.length - 1; i > 0; i--) {
+        let rand = Math.floor(Math.random() * (i + 1));
         [array[i], array[rand]] = [array[rand], array[i]];
     }
 };
@@ -23,16 +23,12 @@ const updateAttempts = newAttempts => {
 
 const checkPair = (first, second) => {
     return first.dataset.id === second.dataset.id && first !== second;
-    // if () {
-    //     first.classList.add("match");
-    //     second.classList.add("match");
-    // } else {
-    //     updateAttempts(attempts + 1);
-    // }
 };
 
 /** @type {HTMLImageElement} */
 let current = null;
+
+/** @type {HTMLImageElement} */
 let other = null;
 
 /** @param {MouseEvent} e */
@@ -54,15 +50,14 @@ const handleImageClick = e => {
     } else {
         other = target;
         if (checkPair(current, target)) {
+            current.classList.remove("active");
             current.classList.add("match");
             other.classList.add("match");
-            current.classList.remove("active");
-            other = null;
             current = null;
+            other = null;
         } else {
             other.classList.add("active");
             updateAttempts(attempts + 1);
-
         }
     }
 };
@@ -84,9 +79,9 @@ const resetPictures = () => {
         });
 
     shuffleArr(pictures);
-    console.log(pictures);
 
     gamePlan.innerHTML = "";
+
     pictures.forEach(picture => gamePlan.appendChild(picture));
 };
 

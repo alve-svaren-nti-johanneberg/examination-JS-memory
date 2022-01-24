@@ -1,16 +1,16 @@
 .item {
-  position: relative;
-  border-radius: .25em;
-  overflow: hidden;
-  -webkit-transform: scale(1);
-          transform: scale(1);
+  cursor: pointer;
   -webkit-transition-property: -webkit-box-shadow transform;
   transition-property: -webkit-box-shadow transform;
   transition-property: box-shadow transform;
   transition-property: box-shadow transform, -webkit-box-shadow transform;
-  -webkit-transition-duration: .3s;
-          transition-duration: .3s;
-  cursor: pointer;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  position: relative;
+  border-radius: 0.25em;
+  overflow: hidden;
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 .item img {
@@ -29,7 +29,7 @@
 }
 
 .item.match {
-  opacity: .5;
+  opacity: 0.5;
   -webkit-transform: scale(0.95);
           transform: scale(0.95);
 }
@@ -43,9 +43,9 @@
 }
 
 .item::after {
-  -webkit-transition: opacity .3s;
-  transition: opacity .3s;
-  content: '';
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  content: "";
   position: absolute;
   inset: 0px;
   z-index: 2;
