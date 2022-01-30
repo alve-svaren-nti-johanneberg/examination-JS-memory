@@ -9,11 +9,12 @@ const imageCount = 12;
 
 let attempts = 0;
 
+/** @param {any[]} array */
 const shuffleArr = array => {
-    for (let i = array.length - 1; i > 0; i--) {
+    array.forEach((_, i) => {
         let rand = Math.floor(Math.random() * (i + 1));
         [array[i], array[rand]] = [array[rand], array[i]];
-    }
+    });
 };
 
 const updateAttempts = newAttempts => {
@@ -77,11 +78,9 @@ const resetPictures = () => {
             picture.addEventListener("click", handleImageClick);
             return picture;
         });
-
     shuffleArr(pictures);
 
     gamePlan.innerHTML = "";
-
     pictures.forEach(picture => gamePlan.appendChild(picture));
 };
 
