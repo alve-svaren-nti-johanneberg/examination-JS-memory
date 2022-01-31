@@ -21,6 +21,10 @@
   opacity: 0;
 }
 
+.item:hover:not(.match):not(.active) {
+  opacity: 0.5;
+}
+
 .item.match {
   opacity: 0.5;
   -webkit-transform: scale(0.95);

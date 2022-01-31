@@ -16,6 +16,10 @@
         }
     }
 
+    &:hover:not(.match):not(.active) {
+        opacity: 0.5;
+    }
+
     &.match {
         opacity: 0.5;
         transform: scale(0.95);
