@@ -4,6 +4,7 @@ const gamePlan = document.querySelector("#game #plan");
 const gameControls = document.querySelector("#game #controls");
 const resetButton = document.querySelector("#game #controls #reset");
 const attemptsText = document.querySelector("#game #controls #attempts");
+const timeText = document.querySelector("#game #controls #time");
 
 const imageCount = 12;
 
@@ -32,8 +33,14 @@ let current = null;
 /** @type {HTMLImageElement} */
 let other = null;
 
+/** @type {Date} */
+let startTime = null;
+
 /** @param {MouseEvent} e */
 const handleImageClick = e => {
+    if (!startTime) {
+        startTime = new Date();
+    }
     // If two images are already selected, deselect them and return
     if (current && other) {
         current.classList.remove("active");
@@ -71,6 +78,16 @@ const handleImageClick = e => {
             updateAttempts(attempts + 1);
         }
     }
+
+    if (checkIfWon()) {
+        alert(`You won in ${attempts} attempts and it took ${getTime()}!`);
+        resetPictures();
+    }
+};
+
+const checkIfWon = () => {
+    const matches = gamePlan.querySelectorAll(".match");
+    return matches.length === imageCount * 2;
 };
 
 const resetPictures = () => {
@@ -90,10 +107,25 @@ const resetPictures = () => {
             return picture;
         });
     shuffleArr(pictures);
+    updateAttempts(0);
+    startTime = null;
 
     // Display them in the game plan
     gamePlan.innerHTML = "";
     pictures.forEach(picture => gamePlan.appendChild(picture));
+};
+
+const zeroPad = num => {
+    return num < 10 ? `0${num}` : num;
+};
+
+const getTime = () => {
+    if (startTime) {
+        const time = new Date(new Date().getTime() - startTime.getTime());
+        return `${zeroPad(time.getMinutes())}:${zeroPad(time.getSeconds())}`;
+    } else {
+        return "00:00";
+    }
 };
 
 resetPictures();
@@ -102,3 +134,5 @@ resetButton.addEventListener("click", () => {
     updateAttempts(0);
     resetPictures();
 });
+
+setInterval(() => (timeText.textContent = getTime()), 1000);
