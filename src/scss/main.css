@@ -1,23 +1,16 @@
 .item {
   cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  border-radius: 0.25em;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
   -webkit-transition-property: -webkit-box-shadow transform;
   transition-property: -webkit-box-shadow transform;
   transition-property: box-shadow transform;
   transition-property: box-shadow transform, -webkit-box-shadow transform;
-  -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
-  position: relative;
-  border-radius: 0.25em;
-  overflow: hidden;
-  -webkit-transform: scale(1);
-          transform: scale(1);
-}
-
-.item img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 .item.match, .item.active {
@@ -35,29 +28,36 @@
 }
 
 .item.active {
+  z-index: 1;
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
-  z-index: 1;
   -webkit-box-shadow: 0 0 1em #000a;
           box-shadow: 0 0 1em #000a;
 }
 
 .item::after {
+  content: "";
+  z-index: 2;
+  inset: 0px;
+  position: absolute;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
-  content: "";
-  position: absolute;
-  inset: 0px;
-  z-index: 2;
   background: #c8c8c8;
 }
 
+.item img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 #game #plan {
-  max-width: 76rem;
-  margin: 0 auto;
+  gap: 1rem;
   display: -ms-grid;
   display: grid;
-  gap: 1rem;
+  margin: 0 auto;
+  max-width: 76rem;
   -ms-grid-columns: (auto)[6];
       grid-template-columns: repeat(6, auto);
 }

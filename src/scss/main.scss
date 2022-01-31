@@ -1,13 +1,16 @@
 .item {
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transform: scale(1);
+    border-radius: 0.25em;
+    transition-duration: 0.3s;
+    transition-property: box-shadow transform;
 
     &.match,
     &.active {
         cursor: unset;
+
         &::after {
             opacity: 0;
         }
@@ -19,35 +22,33 @@
     }
 
     &.active {
-        transform: scale(1.05);
         z-index: 1;
+        transform: scale(1.05);
         box-shadow: 0 0 1em #000a;
     }
 
     &::after {
-        transition: opacity 0.3s;
         content: "";
-        position: absolute;
-        inset: 0px;
         z-index: 2;
+        inset: 0px;
+        position: absolute;
+        transition: opacity 0.3s;
         background: rgba(200, 200, 200, 1);
     }
 
-    cursor: pointer;
-    transition-property: box-shadow transform;
-    transition-duration: 0.3s;
-    position: relative;
-    border-radius: 0.25em;
-    overflow: hidden;
-    transform: scale(1);
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 #game {
     #plan {
-        max-width: 76rem;
-        margin: 0 auto;
-        display: grid;
         gap: 1rem;
+        display: grid;
+        margin: 0 auto;
+        max-width: 76rem;
         grid-template-columns: repeat(6, auto);
     }
 }

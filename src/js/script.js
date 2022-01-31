@@ -12,7 +12,7 @@ let attempts = 0;
 /** @param {any[]} array */
 const shuffleArr = array => {
     array.forEach((_, i) => {
-        let rand = Math.floor(Math.random() * (i + 1));
+        const rand = Math.floor(Math.random() * (i + 1));
         [array[i], array[rand]] = [array[rand], array[i]];
     });
 };
@@ -34,6 +34,7 @@ let other = null;
 
 /** @param {MouseEvent} e */
 const handleImageClick = e => {
+    // If two images are already selected, deselect them and return
     if (current && other) {
         current.classList.remove("active");
         other.classList.remove("active");
@@ -42,21 +43,30 @@ const handleImageClick = e => {
         return;
     }
     const target = e.currentTarget;
+
+    // If the clicked image is already selected or part of a pair, return
     if (target.classList.contains("match") || target.classList.contains("active")) {
         return;
     }
+
+    // If no image is selected, select the clicked image
     if (!current) {
         current = target;
         current.classList.add("active");
-    } else {
+    }
+    // If an image is selected, select the clicked image too and check if it's a match
+    else {
         other = target;
+        // If matching, make both images match and reset the selection
         if (checkPair(current, target)) {
             current.classList.remove("active");
             current.classList.add("match");
             other.classList.add("match");
             current = null;
             other = null;
-        } else {
+        }
+        // If not matching, deselect both images and reset the selection
+        else {
             other.classList.add("active");
             updateAttempts(attempts + 1);
         }
@@ -64,6 +74,7 @@ const handleImageClick = e => {
 };
 
 const resetPictures = () => {
+    // Generate array of image elements
     const pictures = Array(imageCount * 2)
         .fill()
         .map((_, i) => {
@@ -80,6 +91,7 @@ const resetPictures = () => {
         });
     shuffleArr(pictures);
 
+    // Display them in the game plan
     gamePlan.innerHTML = "";
     pictures.forEach(picture => gamePlan.appendChild(picture));
 };
