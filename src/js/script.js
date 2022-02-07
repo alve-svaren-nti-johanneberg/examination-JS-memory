@@ -10,14 +10,6 @@ const imageCount = 12;
 
 let attempts = 0;
 
-/** @param {any[]} array */
-const shuffleArr = array => {
-    array.forEach((_, i) => {
-        const rand = Math.floor(Math.random() * (i + 1));
-        [array[i], array[rand]] = [array[rand], array[i]];
-    });
-};
-
 const updateAttempts = newAttempts => {
     attempts = newAttempts;
     attemptsText.innerHTML = attempts;
@@ -91,8 +83,8 @@ const checkIfWon = () => {
 };
 
 const resetPictures = () => {
-    // Generate array of image elements
-    const pictures = Array(imageCount * 2)
+    // Generate array of image elements in random order
+    let pictures = Array(imageCount * 2)
         .fill()
         .map((_, i) => {
             const picture = document.createElement("picture");
@@ -105,8 +97,8 @@ const resetPictures = () => {
             picture.appendChild(img);
             picture.addEventListener("click", handleImageClick);
             return picture;
-        });
-    shuffleArr(pictures);
+        })
+        .sort(() => Math.random() - 0.5);
     updateAttempts(0);
     startTime = null;
 
