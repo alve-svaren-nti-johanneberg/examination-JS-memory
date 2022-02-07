@@ -6,6 +6,7 @@
     border-radius: 0.25em;
     transition-duration: 0.3s;
     transition-property: box-shadow transform;
+    user-select: none;
 
     &.match,
     &.active {
@@ -32,10 +33,16 @@
     }
 
     &::after {
-        content: "";
+        content: "?";
+        font-size: 8rem;
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        align-items: center;
         z-index: 2;
         inset: 0px;
         position: absolute;
+        color: #fffd;
         transition: opacity 0.3s;
         background: rgba(200, 200, 200, 1);
     }
@@ -54,5 +61,17 @@
         margin: 0 auto;
         max-width: 76rem;
         grid-template-columns: repeat(6, auto);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .item::after {
+        background: #555;
+        color: #fffd;
+    }
+
+    body {
+        color: white;
+        background-color: #222;
     }
 }

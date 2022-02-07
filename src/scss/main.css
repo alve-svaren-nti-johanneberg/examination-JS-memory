@@ -11,6 +11,10 @@
   transition-property: -webkit-box-shadow transform;
   transition-property: box-shadow transform;
   transition-property: box-shadow transform, -webkit-box-shadow transform;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .item.match, .item.active {
@@ -40,10 +44,22 @@
 }
 
 .item::after {
-  content: "";
+  content: "?";
+  font-size: 8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-weight: bold;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   z-index: 2;
   inset: 0px;
   position: absolute;
+  color: #fffd;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   background: #c8c8c8;
@@ -64,5 +80,16 @@
   max-width: 76rem;
   -ms-grid-columns: (auto)[6];
       grid-template-columns: repeat(6, auto);
+}
+
+@media (prefers-color-scheme: dark) {
+  .item::after {
+    background: #555;
+    color: #fffd;
+  }
+  body {
+    color: white;
+    background-color: #222;
+  }
 }
 /*# sourceMappingURL=main.css.map */
