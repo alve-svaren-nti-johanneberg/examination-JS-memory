@@ -1,3 +1,8 @@
+:root {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+
 .item {
   cursor: pointer;
   overflow: hidden;
@@ -15,6 +20,7 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  font-family: "Patua One", serif;
 }
 
 .item.match, .item.active {
@@ -45,7 +51,7 @@
 
 .item::after {
   content: "?";
-  font-size: 8rem;
+  font-size: 6rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -59,7 +65,7 @@
   z-index: 2;
   inset: 0px;
   position: absolute;
-  color: #fffd;
+  color: #fffa;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   background: #c8c8c8;
@@ -77,7 +83,7 @@
   display: -ms-grid;
   display: grid;
   margin: 0 auto;
-  max-width: 76rem;
+  max-width: 70rem;
   -ms-grid-columns: (auto)[6];
       grid-template-columns: repeat(6, auto);
 }
@@ -85,7 +91,6 @@
 @media (prefers-color-scheme: dark) {
   .item::after {
     background: #555;
-    color: #fffd;
   }
   body {
     color: white;
